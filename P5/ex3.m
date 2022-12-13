@@ -1,15 +1,24 @@
 %% Alinea a)
 Ta = 0.01;
-T = 100;
-N = T/Ta;
+T = 1;
+np = 2;
+N = round(np*T/Ta);
 t = (0:N-1)*Ta;
 
 x = sin(2*pi*t);
 
+figure("Name","Grafico Base")
+plot(t,x);
+
 [X,f] = Espetro(x,Ta);
 
-figure(1)
+figure("Name","Grafico Espetral")
 stem(f,abs(X));
+
+figure("Name","Grafico Reconstruido")
+[newX, newTa] = Reconstroi(X, f);
+newt = (0:N-1)*newTa;
+plot(newt,newX);
 
 %% Alinea b)
 Ta = 0.01;

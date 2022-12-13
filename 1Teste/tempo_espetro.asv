@@ -1,0 +1,20 @@
+function[] = tempo_espetro(y,Ta,Fo,Np,T_F)
+    t = 0:Ta:1/Fo*Np-Ta;
+    fa= 1/Ta;
+    N= length(y);
+    Y= fftshift(fft(y))/N;
+    f= (0:N-1)*(fa/N)-(fa/2); 
+    if(T_F == 0)
+        plot(t,y);
+    elseif(T_F == 1) 
+        plot(f,abs(Y));
+    elseif(T_F == 2)
+        subplot(1,2,1);
+        plot(t,y);
+        subplot(1,2,2);
+        plot(f,abs(Y));
+    else
+        disp("T_F deverá ter valores de 0, 1 e 2.");
+    end
+
+end
